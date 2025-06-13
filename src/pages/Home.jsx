@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Banner from '../components/Banner';
 import ItemsCards from '../components/ItemsCards';
 import Categories from '../components/Categories';
@@ -8,14 +7,8 @@ import JoinCommunity from '../components/JoinCommunity';
 
 
 const Home = () => {
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        fetch("/fakeData/data.json")
-            .then(res => res.json())
-            .then(data => setItems(data))
-    }, [])
 
-    // console.log(items);
+    const items = useLoaderData();
 
 
 

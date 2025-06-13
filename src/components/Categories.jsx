@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 
 const Categories = ({ items }) => {
-    console.log(items);
+    // console.log(items);
 
     return (
         <div className="flex flex-col items-center gap-6 py-16">

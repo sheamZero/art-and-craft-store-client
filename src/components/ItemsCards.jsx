@@ -5,7 +5,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 
 
 const ItemsCards = ({ item }) => {
-    console.log(item);
+    // console.log(item);
 
     // const {
     //     id,

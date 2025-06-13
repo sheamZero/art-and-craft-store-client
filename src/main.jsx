@@ -18,14 +18,17 @@ const router = createBrowserRouter([
     path: "/",
     element: <App></App>,
     errorElement: <ErrorPage></ErrorPage>,
-    children:[
+    children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/items")
       },
       {
         path: "/all-items",
-        element:<Allitems></Allitems>
+        element: <Allitems></Allitems>,
+        loader: () => fetch("http://localhost:5000/items")
+
       },
       {
         path: "/all-items/:id",
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
         element: <AddItems></AddItems>
       },
       {
-      
+
       },
       {
         path: "/login",
