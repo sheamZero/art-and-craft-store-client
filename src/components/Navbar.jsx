@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-    let users = true;
+    let users = false;
 
     return (
         <nav className="bg-background py-4 shadow-sm">
