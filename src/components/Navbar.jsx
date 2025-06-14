@@ -1,7 +1,22 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-    let users = false;
+    const { user, logoutUser } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logoutUser()
+            .then(result => console.log("logout successfully"))
+            .catch(err => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${err.message}`,
+                    icon: 'error'
+                })
+            })
+    }
 
     return (
         <nav className="bg-background py-4 shadow-sm">
@@ -112,7 +127,7 @@ const Navbar = () => {
 
                 {/* right side */}
                 <div className="navbar-end">
-                    {!users ? (
+                    {!user ? (
                         <ul className="menu menu-horizontal text-lg px-1 font-quicksand">
                             <li>
                                 <NavLink
@@ -132,9 +147,23 @@ const Navbar = () => {
                             </li>
                         </ul>
                     ) : (
-                        <div className="w-10 h-10 rounded-full bg-gray-300 text-gray-800 flex items-center justify-center">
-                            👤
+                        <div className="w-10 h-10 flex items-center gap-2 cursor-pointer group relative rounded-full bg-gray-300 text-gray-800 justify-center">
+                            {/* <div className="flex items-center gap-2 cursor-pointer group relative"> */}
+                            <img className="w-10 h-10 rounded-full" src={user.photoURL} alt="null" />
+                            <div className="absolute top-0 right-0 pt-14 text-base font-medium z-20 hidden group-hover:block ">
+                                <ul
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content text-base font-medium bg-base-100 rounded-box z-[1] mt-3 w-52 p-4 shadow">
+                                    <li><span>UserName : {user.displayName}</span></li>
+                                    <li>
+                                        <button onClick={handleLogOut} className="hover:text-buttonBg">
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        // </div>
                     )}
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 
 const Register = () => {
@@ -24,6 +25,13 @@ const Register = () => {
         else {
             registerUsingEmailPass(email, password)
                 .then(result => {
+                    // update userName and PhotoUrl
+                    updateProfile(result.user, {
+                        displayName: name,
+                        photoURL: photoURL
+                    })
+
+
                     Swal.fire({
                         title: "Success!",
                         text: 'Success create an user.',

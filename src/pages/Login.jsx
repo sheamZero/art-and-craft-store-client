@@ -16,7 +16,13 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
             })
-            .catch(err => console.log(err.message))
+            .catch(err => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${err.message}`,
+                    icon: 'error'
+                })
+            })
 
 
 
