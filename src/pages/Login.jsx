@@ -8,13 +8,14 @@ import { AuthContext } from '../context/AuthProvider';
 const Login = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
-    const { loginUsingEmailPass } = useContext(AuthContext);
+    const { loginUsingEmailPass, loginUsingGoogle, loginUsingGithub } = useContext(AuthContext);
 
     const onSubmit = e => {
         const { email, password } = e;
         loginUsingEmailPass(email, password)
             .then(result => {
                 console.log(result.user);
+                navigate('/')
             })
             .catch(err => {
                 Swal.fire({
@@ -23,17 +24,34 @@ const Login = () => {
                     icon: 'error'
                 })
             })
-
-
-
     };
 
     const handleGoogleLogin = () => {
-
+        loginUsingGoogle()
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${err.message}`,
+                    icon: 'error'
+                })
+            })
     };
 
     const handleGithubLogin = () => {
-
+        loginUsingGithub()
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: `${err.message}`,
+                    icon: 'error'
+                })
+            })
     };
 
     return (
