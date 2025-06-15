@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthProvider';
 import { updateProfile } from 'firebase/auth';
@@ -8,10 +8,12 @@ import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const { registerUsingEmailPass } = useContext(AuthContext);
 
     const onSubmit = (data) => {
+
         const { name, email, password, photoURL } = data;
 
         //Password validation
@@ -31,13 +33,13 @@ const Register = () => {
                         photoURL: photoURL
                     })
 
-
                     Swal.fire({
                         title: "Success!",
                         text: 'Success create an user.',
                         icon: "success",
 
                     });
+                    navigate(location.state);
                     console.log(result);
                 })
                 .catch(err => console.log(err.message))

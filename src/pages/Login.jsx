@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 
 const Login = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const { loginUsingEmailPass, loginUsingGoogle, loginUsingGithub } = useContext(AuthContext);
@@ -15,7 +16,7 @@ const Login = () => {
         loginUsingEmailPass(email, password)
             .then(result => {
                 console.log(result.user);
-                navigate('/')
+                navigate(location.state)
             })
             .catch(err => {
                 Swal.fire({
@@ -29,6 +30,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         loginUsingGoogle()
             .then(result => {
+                navigate(location.state)
                 console.log(result);
             })
             .catch(err => {
@@ -43,6 +45,7 @@ const Login = () => {
     const handleGithubLogin = () => {
         loginUsingGithub()
             .then(result => {
+                navigate(location.state)
                 console.log(result);
             })
             .catch(err => {

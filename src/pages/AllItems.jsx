@@ -1,8 +1,8 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import ItemsCards from '../components/ItemsCards';
 
 const Allitems = () => {
     const items = useLoaderData();
+    console.log(items);
 
     return (
         <div>
@@ -16,19 +16,25 @@ const Allitems = () => {
                             <th></th>
                             <th>Item_Name</th>
                             <th>Subcategory_Name</th>
+                            <th>User_Email</th>
                             <th>User_Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                            <td><Link>View Details</Link></td>
-                        </tr>
+                        {
+                            items.map((item, idx) => (
+                                <tr key={idx}>
+                                    <th>{idx + 1}</th>
+                                    <td>{item.item_name}</td>
+                                    <td>{item.subcategory_Name}</td>
+                                    <td>{item.user_email}</td>
+                                    <td>{item.user_name}</td>
+                                    <td><Link to={`/all-items/${item._id}`} className='btn hover:btn-secondary'>View Details</Link></td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>

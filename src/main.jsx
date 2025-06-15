@@ -12,6 +12,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import ItemDetails from './pages/ItemDetails.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
+import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -33,11 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-items/:id",
-        element: <ItemDetails></ItemDetails>
+        element: <PrivateRoute><ItemDetails></ItemDetails></PrivateRoute>
       },
       {
         path: "/add-items",
-        element: <AddItems></AddItems>
+        element: <PrivateRoute><AddItems></AddItems></PrivateRoute>
       },
       {
 
