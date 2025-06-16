@@ -7,10 +7,7 @@ import JoinCommunity from '../components/JoinCommunity';
 
 
 const Home = () => {
-
     const items = useLoaderData();
-
-
 
     return (
         <div>
