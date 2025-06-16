@@ -28,10 +28,7 @@ const AddItems = () => {
                         icon: "success"
                     });
                 }
-
             })
-
-
         reset();
     };
 

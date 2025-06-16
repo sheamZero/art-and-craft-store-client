@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyItems = () => {
     const { user } = useContext(AuthContext);
@@ -17,7 +18,8 @@ const MyItems = () => {
     useEffect(() => {
         if (customizationFilter === "All") {
             setFilteredItems(myItems);
-        } else {
+        }
+        else {
             const filtered = myItems.filter(
                 item => item.customization.toLowerCase() === customizationFilter.toLowerCase()
             );
@@ -25,21 +27,37 @@ const MyItems = () => {
         }
     }, [customizationFilter]);
 
-    // Handle dropdown change
-    const handleOnChange = (e) => {
-        setCustomizationFilter(e.target.value);
-    };
-
-    // Handle Update
-    const handleUpdate = (id) => {
-        console.log("Update clicked for item:", id);
-        // Example: navigate(`/update/${id}`);
-    };
-
     // Handle Delete
     const handleDelete = (id) => {
-        console.log("Delete clicked for item:", id);
-        // Example: show confirmation and call delete API
+        Swal.fire({
+            title: "Do you want to Remove this Item?",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/items/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Success",
+                                text: "Successfully delete Item!",
+                                icon: "success",
+
+                            })
+                            const remaining = filteredItems.filter(item => item._id === id);
+                            setFilteredItems(remaining);
+                        }
+                    })
+            }
+        });
+
+
+
+
     };
 
     return (
@@ -52,7 +70,7 @@ const MyItems = () => {
                 <select
                     className="border rounded px-3 py-2"
                     value={customizationFilter}
-                    onChange={handleOnChange}
+                    onChange={(e) => setCustomizationFilter(e.target.value)}
                 >
                     <option value="All">All</option>
                     <option value="Yes">Yes</option>
@@ -95,6 +113,10 @@ const MyItems = () => {
                                         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                                         to={`/my-items/${item._id}`}>Update
                                     </Link>
+                                    <button
+                                        onClick={() => handleDelete(item._id)}
+                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>

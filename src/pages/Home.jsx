@@ -25,7 +25,7 @@ const Home = () => {
                 <p className="text-center text-paragraph text-lg mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident consectetur soluta ea incidunt? Voluptatibus, aperiam?</p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 md:gap-6 gap-6 px-4">
-                    {items.map((item, idx) => (
+                    {items.slice(0, 6).map((item, idx) => (
                         <ItemsCards item={item} key={idx} />
                     ))}
                 </div>
