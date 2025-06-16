@@ -7,15 +7,6 @@ import { BsCurrencyDollar } from "react-icons/bs";
 const ItemsCards = ({ item }) => {
     // console.log(item);
 
-    // const {
-    //     id,
-    //     image,
-    //     item_name,
-    //     subcategory_Name,
-    //     short_description,
-    //     stockStatus
-    // } = item;
-
     return (
         <div className="p-6 bg-white rounded-xl max-w-96 shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col">
             {/* Image */}
@@ -46,7 +37,7 @@ const ItemsCards = ({ item }) => {
                 </div>
 
                 <Link
-                    to={`/all-items/${item.id}`}  // You can replace with your route
+                    to={`/all-items/${item._id}`}  // You can replace with your route
                     className="mt-4 inline-block text-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition"
                 >
                     View Details

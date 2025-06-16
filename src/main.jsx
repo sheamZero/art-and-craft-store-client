@@ -8,11 +8,13 @@ import Home from './pages/Home.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import Allitems from './pages/Allitems.jsx';
 import AddItems from './pages/AddItems.jsx';
+import MyItems from './pages/MyItems.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import ItemDetails from './pages/ItemDetails.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
+import UpdateItem from './pages/UpdateItem.jsx';
 
 
 const router = createBrowserRouter([
@@ -34,14 +36,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-items/:id",
-        element: <PrivateRoute><ItemDetails></ItemDetails></PrivateRoute>
+        element: <PrivateRoute><ItemDetails></ItemDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/items/${params.id}`)
       },
       {
         path: "/add-items",
         element: <PrivateRoute><AddItems></AddItems></PrivateRoute>
       },
       {
-
+        path: "/my-items",
+        element: <PrivateRoute><MyItems></MyItems></PrivateRoute>,
+        loader: () => fetch("http://localhost:5000/items")
+      },
+      {
+        path: "/my-items/:id",
+        element: <PrivateRoute><UpdateItem></UpdateItem></PrivateRoute>,
       },
       {
         path: "/login",
