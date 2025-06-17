@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
+    const [theme, setTheme] = useState("light");
 
     // creating user using email and password
     const registerUsingEmailPass = (email, password) => {
@@ -39,8 +40,21 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
+    // theme
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
 
     useEffect(() => {
+        // theme
+        const storedTheme = localStorage.getItem("theme") || "light";
+        setTheme(storedTheme);
+        document.documentElement.setAttribute("data-theme", storedTheme);
+
+        // current user
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log("Current User = ", currentUser);
             setUser(currentUser);
@@ -62,6 +76,8 @@ const AuthProvider = ({ children }) => {
         loginUsingGoogle,
         loginUsingGithub,
         logoutUser,
+        theme,
+        toggleTheme,
     }
 
     return (

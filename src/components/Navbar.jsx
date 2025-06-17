@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 import Swal from "sweetalert2";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const Navbar = () => {
-    const { user, logoutUser } = useContext(AuthContext);
+    const { user, logoutUser, theme, toggleTheme } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logoutUser()
@@ -62,6 +63,14 @@ const Navbar = () => {
 
                 {/* right side */}
                 <div className="navbar-end">
+                    <button
+                        onClick={toggleTheme}
+                        className="text-xl p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                        title="Toggle Theme"
+                    >
+                        {theme === "light" ? <FiMoon /> : <FiSun />}
+                    </button>
+
                     {!user ? (
                         <ul className="menu menu-horizontal text-lg px-1 font-quicksand">
                             <li><NavLink to="/login" className={linkStyle}>Signin</NavLink></li>
