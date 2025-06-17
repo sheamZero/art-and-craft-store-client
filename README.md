@@ -1,12 +1,11 @@
-# React + Vite
+# Craft!qo – Art & Craft Store Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** [https://your-live-site-url.com]
+**Selected Category:**Art & Drawing
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Website Features
+**Responsive Home Page** - with hero banner, category showcase, and featured crafts.
+**Add & Manage Items** – Authenticated users can add, view, update, and delete their own craft items.
+**Filter & View** – Users can filter items by customization option and view details of each product.
+**Firebase Authentication** - with protected routes for logged-in users only.
+**Beautiful UI Design** - using Tailwind CSS + DaisyUI with custom color theming.
