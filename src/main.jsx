@@ -15,6 +15,7 @@ import ItemDetails from './pages/ItemDetails.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import PrivateRoute from './privateRoute/PrivateRoute.jsx';
 import UpdateItem from './pages/UpdateItem.jsx';
+import SubcategoriesCard from './components/SubcategoriesCard.jsx';
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path:"/subcategory/:sub_name",
+        element: <SubcategoriesCard></SubcategoriesCard>
       }
     ]
   },

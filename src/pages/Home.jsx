@@ -1,12 +1,21 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { data, Link, useLoaderData } from "react-router-dom";
 import Banner from '../components/Banner';
 import ItemsCards from '../components/ItemsCards';
 import Categories from '../components/Categories';
 import WhyChooseUs from '../components/WhyChooseUs';
 import JoinCommunity from '../components/JoinCommunity';
+import { useEffect, useState } from "react";
 
 const Home = () => {
     const items = useLoaderData();
+    const [subcategories, setSubcategories] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5000/subcategory")
+            .then(res => res.json())
+            .then(data => setSubcategories(data))
+    }, [])
+    // console.log(subcategories);
 
     return (
         <div>
@@ -48,7 +57,7 @@ const Home = () => {
 
             {/* ---------------Categories Section--------------- */}
             <section>
-                <Categories items={items} />
+                <Categories subcategories={subcategories} />
             </section>
 
             {/*--------------- Join Our Community --------------- */}

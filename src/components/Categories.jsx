@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
 
 
-const Categories = ({ items }) => {
+const Categories = ({ subcategories }) => {
     // console.log(items);
 
     return (
@@ -15,21 +15,23 @@ const Categories = ({ items }) => {
 
             {/* category card */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-5">
-                    {items.map((item, idx) => (
-                        <Link key={idx} className="flex flex-col items-center hover:text-teal-600">
-                            <div
-                                className="flex items-center justify-center rounded-full bg-white shadow-md w-60 h-60 overflow-hidden hover:translate-y-[10px] transition-all duration-500"
-                            >
-                                <img
-                                    src={item.image}
-                                    alt={item.subcategory_Name}
-                                    className="w-full h-full object-cover rounded-full"
-                                />
-                            </div>
-                            <p className="mt-3 font-medium text-center text-lg ">{item.subcategory_Name}</p>
-                        </Link>
+                {subcategories.map((item, idx) => (
+                    <Link 
+                    to={`/subcategory/${item.subcategory_Name}`}
+                    key={idx} className="flex flex-col items-center hover:text-teal-600">
+                        <div
+                            className="flex items-center justify-center rounded-full bg-white shadow-md w-60 h-60 overflow-hidden hover:translate-y-[10px] transition-all duration-500"
+                        >
+                            <img
+                                src={item.image}
+                                alt={item.subcategory_Name}
+                                className="w-full h-full object-cover rounded-full"
+                            />
+                        </div>
+                        <p className="mt-3 font-medium text-center text-lg ">{item.subcategory_Name}</p>
+                    </Link>
 
-                    ))}
+                ))}
             </div>
         </div>
     );
