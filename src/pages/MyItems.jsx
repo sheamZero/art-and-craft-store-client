@@ -31,7 +31,7 @@ const MyItems = () => {
             confirmButtonText: "Yes",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/items/${id}`, {
+                fetch(`https://art-and-craft-store-server-kohl.vercel.app/items/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

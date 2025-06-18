@@ -8,7 +8,7 @@ const SubcategoriesCard = () => {
     const { sub_name } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/subcategory/${sub_name}`)
+        fetch(`https://art-and-craft-store-server-kohl.vercel.app/subcategory/${sub_name}`)
             .then(res => res.json())
             .then(data => setItems(data))
     }, [sub_name])

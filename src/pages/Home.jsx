@@ -11,7 +11,7 @@ const Home = () => {
     const [subcategories, setSubcategories] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/subcategory")
+        fetch("https://art-and-craft-store-server-kohl.vercel.app/subcategory")
             .then(res => res.json())
             .then(data => setSubcategories(data))
     }, [])

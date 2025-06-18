@@ -11,7 +11,7 @@ const AddItems = () => {
 
     const onSubmit = (data) => {
 
-        fetch("http://localhost:5000/items", {
+        fetch("https://art-and-craft-store-server-kohl.vercel.app/items", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

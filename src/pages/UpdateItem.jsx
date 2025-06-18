@@ -9,7 +9,7 @@ const UpdateItem = () => {
     const onSubmit = (data) => {
         console.log(data);
 
-        fetch(`http://localhost:5000/items/${iddd.id}`, {
+        fetch(`https://art-and-craft-store-server-kohl.vercel.app/items/${iddd.id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

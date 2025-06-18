@@ -27,18 +27,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/items")
+        loader: () => fetch("https://art-and-craft-store-server-kohl.vercel.app/items")
       },
       {
         path: "/all-items",
         element: <Allitems></Allitems>,
-        loader: () => fetch("http://localhost:5000/items")
+        loader: () => fetch("https://art-and-craft-store-server-kohl.vercel.app/items")
 
       },
       {
         path: "/all-items/:id",
         element: <PrivateRoute><ItemDetails></ItemDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/items/${params.id}`)
+        loader: ({ params }) => fetch(`https://art-and-craft-store-server-kohl.vercel.app/items/${params.id}`)
       },
       {
         path: "/add-items",
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       {
         path: "/my-items",
         element: <PrivateRoute><MyItems></MyItems></PrivateRoute>,
-        loader: () => fetch("http://localhost:5000/items")
+        loader: () => fetch("https://art-and-craft-store-server-kohl.vercel.app/items")
       },
       {
         path: "/my-items/:id",
