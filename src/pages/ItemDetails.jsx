@@ -25,15 +25,14 @@ const ItemDetails = () => {
                     <p className="text-md">{short_description}</p>
 
                     <div className="grid grid-cols-2 gap-4 text-sm mt-4">
-                        <p><strong className="text-heading">Price:</strong> {price}</p>
-                        <p><strong className="text-heading">Rating:</strong>  {rating} / 5</p>
-                        <p><strong className="text-heading">Customization:</strong> {customization}</p>
-                        <p><strong className="text-heading">Processing Time:</strong> {processing_time}</p>
-                        <p><strong className="text-heading">Stock Status:</strong> {stockStatus}</p>
-                        <p><strong className="text-heading">Seller:</strong> {user_name}</p>
-                        <p><strong className="text-heading">Contact:</strong> {user_email}</p>
-                    </div>
-
+                        <p><strong className="text-gray-800 font-medium">Price:</strong> ${price}</p>
+                        <p><strong className="text-gray-800 font-medium">Rating:</strong> {rating} / 5</p>
+                        <p><strong className="text-gray-800 font-medium">Customization:</strong> {customization}</p>
+                        <p><strong className="text-gray-800 font-medium">Processing Time:</strong> {processing_time}</p>
+                        <p><strong className="text-gray-800 font-medium">Stock Status:</strong> {stockStatus}</p>
+                        <p><strong className="text-gray-800 font-medium">Seller:</strong> {user_name}</p>
+                        <p><strong className="text-gray-800 font-medium">Contact:</strong> {user_email}</p>
+                    </div> 
                     <button className="mt-6 bg-buttonBg hover:bg-buttonHoverBg text-white px-6 py-2 rounded-full shadow-buttonShadow transition">
                         Order Now
                     </button>

@@ -82,7 +82,7 @@ const Navbar = () => {
                             <div className="absolute top-0 right-0 pt-14 text-base font-medium z-20 hidden group-hover:block">
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content text-base font-medium bg-white rounded-box z-[1] mt-3 w-52 p-4 shadow">
+                                    className="menu menu-sm dropdown-content text-base text-gray-700 font-medium bg-white rounded-box z-[1] mt-3 w-52 p-4 shadow">
                                     <li><span>UserName : {user.displayName}</span></li>
                                     <li><button onClick={handleLogOut} className="hover:text-teal-500">Logout</button></li>
                                 </ul>

@@ -11,15 +11,12 @@ const MyItems = () => {
     // Filter only current user's items
     const myItems = items.filter(item => item.user_email === user?.email);
 
-    // State for filtered items
     const [filteredItems, setFilteredItems] = useState(myItems);
 
-    // Update filtered items whenever filter changes
     useEffect(() => {
         if (customizationFilter === "All") {
             setFilteredItems(myItems);
-        }
-        else {
+        } else {
             const filtered = myItems.filter(
                 item => item.customization.toLowerCase() === customizationFilter.toLowerCase()
             );
@@ -27,7 +24,6 @@ const MyItems = () => {
         }
     }, [customizationFilter]);
 
-    // Handle Delete
     const handleDelete = (id) => {
         Swal.fire({
             title: "Do you want to Remove this Item?",
@@ -40,35 +36,29 @@ const MyItems = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         if (data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Success",
-                                text: "Successfully delete Item!",
+                                text: "Successfully deleted item!",
                                 icon: "success",
-
-                            })
-                            const remaining = filteredItems.filter(item => item._id === id);
+                            });
+                            const remaining = filteredItems.filter(item => item._id !== id);
                             setFilteredItems(remaining);
                         }
-                    })
+                    });
             }
         });
-
-
-
-
     };
 
     return (
         <div className="p-6">
-            <h2 className="text-3xl font-bold mb-6 text-center">My Art & Craft List</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center text-teal-600">My Art & Craft List</h2>
 
             {/* Filter Dropdown */}
             <div className="mb-6 text-center">
-                <label className="mr-2 font-semibold">Filter by Customization:</label>
+                <label className="mr-2 font-medium text-gray-700">Filter by Customization:</label>
                 <select
-                    className="border rounded px-3 py-2"
+                    className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
                     value={customizationFilter}
                     onChange={(e) => setCustomizationFilter(e.target.value)}
                 >
@@ -84,38 +74,30 @@ const MyItems = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {filteredItems.map(item => (
-                        <div key={item._id} className="bg-white shadow-lg border rounded-xl overflow-hidden">
+                        <div key={item._id} className="bg-gray-50 shadow-md border rounded-xl overflow-hidden">
                             <img
                                 src={item.image}
                                 alt={item.item_name}
                                 className="w-full h-48 object-cover"
                             />
-                            <div className="p-4 space-y-2">
-                                <h3 className="text-xl font-semibold">{item.item_name}</h3>
-                                <p><strong>Price:</strong> ${item.price}</p>
-                                <p><strong>Rating:</strong> {item.rating}</p>
-                                <p><strong>Customization:</strong> {item.customization}</p>
-                                <p><strong>Stock Status:</strong> {item.stockStatus}</p>
+                            <div className="p-4 space-y-2 text-gray-700">
+                                <h3 className="text-xl font-semibold text-gray-800">{item.item_name}</h3>
+                                <p><span className="font-medium">Price:</span> ${item.price}</p>
+                                <p><span className="font-medium">Rating:</span> {item.rating}</p>
+                                <p><span className="font-medium">Customization:</span> {item.customization}</p>
+                                <p><span className="font-medium">Stock Status:</span> {item.stockStatus}</p>
                                 <div className="flex justify-between mt-4">
-                                    {/* <button
-                                        onClick={() => handleUpdate(item._id)}
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                                    <Link
+                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                                        to={`/my-items/${item._id}`}
                                     >
                                         Update
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(item._id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                                    >
-                                        Delete
-                                    </button> */}
-                                    <Link
-                                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                                        to={`/my-items/${item._id}`}>Update
                                     </Link>
                                     <button
                                         onClick={() => handleDelete(item._id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Delete
+                                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                                    >
+                                        Delete
                                     </button>
                                 </div>
                             </div>
